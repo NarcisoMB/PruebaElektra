@@ -4,12 +4,18 @@
 import SwiftUI
 
 struct MoviesView: View {
+    
+    @State private var apiResults: APIResults!
+    
     var body: some View {
         VStack{
-            Text("Hellow")
+            Text("Movies")
+            
         }
         .onAppear(){
-            fetchPopularMovies()
+            fetchPopularMovies(){apiRes in 
+                apiResults = apiRes
+            }
         }
     }
 }
