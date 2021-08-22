@@ -3,7 +3,7 @@
 //  Created by Narciso Meza on 21/08/21.
 
 import Foundation
-struct Movie: Codable {
+struct Movie: Identifiable, Codable {
     var adult: Bool
     var backdrop_path: String
     var genre_ids: [Int]
