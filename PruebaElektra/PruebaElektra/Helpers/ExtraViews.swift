@@ -19,3 +19,20 @@ struct LoadingView: View {
             }
     }
 }
+
+struct TabBarIcon: View {
+     
+     let width, height: CGFloat
+     let systemIconName, tabName: String
+     
+     var body: some View {
+         VStack {
+             Image(systemName: systemIconName)
+                 .resizable()
+                 .aspectRatio(contentMode: .fit)
+                 .frame(width: width, height: height)
+             Text(tabName)
+                 .font(.footnote)
+         }
+     }
+ }

@@ -8,6 +8,12 @@ struct ContentView: View {
     var body: some View {
         VStack{
             PopularMoviesView()
+            HStack {
+                TabBarIcon(width: screenSize.width/4, height: screenSize.height/48, systemIconName: "film", tabName: "Popular Movies")
+                TabBarIcon(width: screenSize.width/4, height: screenSize.height/48, systemIconName: "film", tabName: "New Movies")
+                TabBarIcon(width: screenSize.width/4, height: screenSize.height/48, systemIconName: "tv", tabName: "Popular Series")
+                TabBarIcon(width: screenSize.width/4, height: screenSize.height/48, systemIconName: "tv", tabName: "New Series")
+            }
         }
     }
 }
