@@ -1,6 +1,7 @@
 //  AiringMoviesView.swift
 //  PruebaElektra
 //  Created by Narciso Meza on 21/08/21.
+
 import SwiftUI
 import Kingfisher
 
@@ -23,7 +24,7 @@ struct AiringMoviesView: View {
                                 VStack{
                                     Spacer()
                                     Text("\(movie.title)")
-                                        .font(.title)
+                                        .font(.title2)
                                         .padding(.bottom, 6)
                                         .background(
                                             Color.gray
@@ -36,6 +37,8 @@ struct AiringMoviesView: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                 }else{
+                    Spacer()
+                        .frame(height: UIScreen.main.bounds.height*0.35)
                     LoadingView()
                 }
             }

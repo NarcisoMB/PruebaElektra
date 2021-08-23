@@ -5,7 +5,7 @@
 import Foundation
 func fetchPopularMovies(completion: @escaping (MovieResults) -> Void){
     
-    let url = URL(string: apiURL + "/movie/popular?api_key=2dd070830ec9b7cbdfc3675b4eb8939b")
+    let url = URL(string: apiURL + "/movie/popular?api_key=" + API_KEY)
     let request = URLRequest(url: url!)
     
     URLSession.shared.dataTask(with: request) { data, response, error in
@@ -22,7 +22,7 @@ func fetchPopularMovies(completion: @escaping (MovieResults) -> Void){
 
 func fetchPlayingNowMovies(completion: @escaping (MovieResults) -> Void){
     
-    let url = URL(string: apiURL + "/movie/now_playing?api_key=2dd070830ec9b7cbdfc3675b4eb8939b")
+    let url = URL(string: apiURL + "/movie/now_playing?api_key=" + API_KEY)
     let request = URLRequest(url: url!)
     
     URLSession.shared.dataTask(with: request) { data, response, error in

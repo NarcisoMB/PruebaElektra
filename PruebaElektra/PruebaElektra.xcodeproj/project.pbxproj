@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2853429026D3576F004F588F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2853428F26D3576F004F588F /* Helper.swift */; };
 		285E180226D3670B009FBEA8 /* Serie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E180126D3670B009FBEA8 /* Serie.swift */; };
+		285E180426D3D976009FBEA8 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E180326D3D976009FBEA8 /* MovieDetailView.swift */; };
 		285F92DB26D1D4F3001DEE79 /* PruebaElektraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285F92DA26D1D4F3001DEE79 /* PruebaElektraApp.swift */; };
 		285F92DD26D1D4F3001DEE79 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285F92DC26D1D4F3001DEE79 /* ContentView.swift */; };
 		285F92DF26D1D4F5001DEE79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 285F92DE26D1D4F5001DEE79 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		2853428F26D3576F004F588F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		285E180126D3670B009FBEA8 /* Serie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serie.swift; sourceTree = "<group>"; };
+		285E180326D3D976009FBEA8 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		285F92D726D1D4F3001DEE79 /* PruebaElektra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PruebaElektra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		285F92DA26D1D4F3001DEE79 /* PruebaElektraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PruebaElektraApp.swift; sourceTree = "<group>"; };
 		285F92DC26D1D4F3001DEE79 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				285F92F526D1F630001DEE79 /* Helpers */,
 				285F92E326D1D4F5001DEE79 /* Info.plist */,
 				285F92ED26D1DF1F001DEE79 /* Models */,
+				285E180326D3D976009FBEA8 /* MovieDetailView.swift */,
 				285F92DA26D1D4F3001DEE79 /* PruebaElektraApp.swift */,
 				285F92EB26D1DBE1001DEE79 /* PopularMoviesView.swift */,
 				285F930626D21220001DEE79 /* PopularSeriesView.swift */,
@@ -198,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				285E180426D3D976009FBEA8 /* MovieDetailView.swift in Sources */,
 				285F92DD26D1D4F3001DEE79 /* ContentView.swift in Sources */,
 				285F930926D2122E001DEE79 /* AiringSeriesView.swift in Sources */,
 				285F92EC26D1DBE1001DEE79 /* PopularMoviesView.swift in Sources */,

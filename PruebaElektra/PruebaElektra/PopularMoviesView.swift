@@ -1,6 +1,7 @@
 //  PopularMoviesView.swift
 //  PruebaElektra
 //  Created by Narciso Meza on 21/08/21.
+
 import SwiftUI
 import Kingfisher
 
@@ -36,6 +37,8 @@ struct PopularMoviesView: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                 }else{
+                    Spacer()
+                        .frame(height: UIScreen.main.bounds.height*0.35)
                     LoadingView()
                 }
             }

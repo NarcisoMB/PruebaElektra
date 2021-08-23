@@ -5,7 +5,7 @@
 import Foundation
 func fetchPopularSeries(completion: @escaping (SerieResults) -> Void){
     
-    let url = URL(string: apiURL + "/tv/popular?api_key=2dd070830ec9b7cbdfc3675b4eb8939b")
+    let url = URL(string: apiURL + "/tv/popular?api_key=" + API_KEY)
     let request = URLRequest(url: url!)
     
     URLSession.shared.dataTask(with: request) { data, response, error in
@@ -22,7 +22,7 @@ func fetchPopularSeries(completion: @escaping (SerieResults) -> Void){
 
 func fetchPlayingNowSeries(completion: @escaping (SerieResults) -> Void){
     
-    let url = URL(string: apiURL + "/tv/on_the_air?api_key=2dd070830ec9b7cbdfc3675b4eb8939b")
+    let url = URL(string: apiURL + "/tv/on_the_air?api_key=" + API_KEY)
     let request = URLRequest(url: url!)
     
     URLSession.shared.dataTask(with: request) { data, response, error in

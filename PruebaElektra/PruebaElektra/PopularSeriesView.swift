@@ -11,40 +11,72 @@ struct PopularSeriesView: View {
     
     var body: some View {
         ScrollView(.vertical){
-            VStack{
-                if mostPopularSeries != nil{
-                    ForEach(mostPopularSeries.results){serie in
-                        Button(action: {
-                            print("\(serie.name)")
-                        }){
-                            ZStack{
-                                KFImage(URL(string: imagesURL + serie.backdrop_path))
-                                    .resizable()
-                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3, alignment: .center)
-                                VStack{
-                                    Spacer()
-                                    Text("\(serie.name)")
-                                        .font(.title)
-                                        .padding(.bottom, 6)
-                                        .background(
-                                            Color.gray
-                                                .opacity(0.5)
-                                                .frame(width: UIScreen.main.bounds.width)
-                                        )
+            if mostPopularSeries != nil{
+                HStack{
+                    VStack{
+                        ForEach(mostPopularSeries.results.split().left){serie in
+                            Button(action: {
+                                print("\(serie.name)")
+                            }){
+                                ZStack{
+                                    KFImage(URL(string: imagesURL + serie.poster_path))
+                                        .resizable()
+                                        .frame(width: UIScreen.main.bounds.width*0.4, height: UIScreen.main.bounds.height*0.25, alignment: .center)
+                                    VStack{
+                                        Spacer()
+                                        Text("\(serie.name)")
+                                            .font(.title2)
+                                            .padding(.bottom, 6)
+                                            .background(
+                                                Color.gray
+                                                    .opacity(0.5)
+                                                    .frame(width: UIScreen.main.bounds.width*0.4)
+                                            )
+                                            .frame(width: UIScreen.main.bounds.width*0.4)
+                                    }
                                 }
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
                     }
-                }else{
-                    LoadingView()
+                    .padding(.leading, UIScreen.main.bounds.width*0.06)
+                    VStack{
+                        ForEach(mostPopularSeries.results.split().right){serie in
+                            Button(action: {
+                                print("\(serie.name)")
+                            }){
+                                ZStack{
+                                    KFImage(URL(string: imagesURL + serie.poster_path))
+                                        .resizable()
+                                        .frame(width: UIScreen.main.bounds.width*0.4, height: UIScreen.main.bounds.height*0.25, alignment: .center)
+                                    VStack{
+                                        Spacer()
+                                        Text("\(serie.name)")
+                                            .font(.title2)
+                                            .padding(.bottom, 6)
+                                            .background(
+                                                Color.gray
+                                                    .opacity(0.5)
+                                                    .frame(width: UIScreen.main.bounds.width*0.4)
+                                            )
+                                            .frame(width: UIScreen.main.bounds.width*0.4)
+                                    }
+                                }
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    }
+                    .padding(.horizontal, UIScreen.main.bounds.width*0.06)
                 }
+            }else{
+                Spacer()
+                    .frame(height: UIScreen.main.bounds.height*0.35)
+                LoadingView()
             }
-            .onAppear(){
-                fetchPopularSeries(){apiRes in
-                    print(apiRes)
-                    mostPopularSeries = apiRes
-                }
+        }
+        .onAppear(){
+            fetchPopularSeries(){apiRes in
+                mostPopularSeries = apiRes
             }
         }
     }
