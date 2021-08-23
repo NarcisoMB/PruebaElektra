@@ -5,14 +5,30 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var selected = 0
+    @ObservedObject var model = SwiftUIViewCModel.shared
+    
     var body: some View {
         VStack{
-            PopularMoviesView()
-            HStack {
-                TabBarIcon(width: screenSize.width/4, height: screenSize.height/48, systemIconName: "film", tabName: "Popular Movies")
-                TabBarIcon(width: screenSize.width/4, height: screenSize.height/48, systemIconName: "film", tabName: "New Movies")
-                TabBarIcon(width: screenSize.width/4, height: screenSize.height/48, systemIconName: "tv", tabName: "Popular Series")
-                TabBarIcon(width: screenSize.width/4, height: screenSize.height/48, systemIconName: "tv", tabName: "New Series")
+            Picker(selection: $selected, label: Text(""), content: {
+                Text("Most Popular").tag(0)
+                Text("Playing Now").tag(1)
+            }).pickerStyle(SegmentedPickerStyle())
+            if model.state == .airingMoviesView && selected == 1{
+                AiringMoviesView()
+            }else if model.state == .airingSeriesView && selected == 1 {
+                AiringSeriesView()
+            }else if model.state == .popularMoviesView && selected == 0 {
+                PopularMoviesView()
+            }else if  model.state == .popularSeriesView && selected == 0 {
+                PopularSeriesView()
+            }
+            HStack{
+                HStack {
+                    TabBarIcon(width: screenSize.width*0.5, height: screenSize.height/48, systemIconName: "film", tabName: "Movies")
+                    TabBarIcon(width: screenSize.width*0.5, height: screenSize.height/48, systemIconName: "tv", tabName: "Series")
+                }
             }
         }
     }

@@ -2,6 +2,7 @@
 //  PruebaElektra
 //  Created by Narciso Meza on 21/08/21.
 import SwiftUI
+import Kingfisher
 
 struct LoadingView: View {
     

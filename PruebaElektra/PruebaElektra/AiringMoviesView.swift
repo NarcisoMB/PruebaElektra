@@ -1,19 +1,19 @@
-//  PopularSeriesView.swift
+//  AiringMoviesView.swift
 //  PruebaElektra
 //  Created by Narciso Meza on 21/08/21.
-
 import SwiftUI
 import Kingfisher
 
-struct PopularSeriesView: View {
+struct AiringMoviesView: View {
     
-    @State private var mostPopularSeries: APIResults!
+    @State private var playingNowMovies: APIResults!
     
     var body: some View {
         ScrollView(.vertical){
             VStack{
-                if mostPopularSeries != nil{
-                    ForEach(mostPopularSeries.results){movie in
+                Text("Playing Now Movies")
+                if playingNowMovies != nil{
+                    ForEach(playingNowMovies.results){movie in
                         Button(action: {
                             print("\(movie.title)")
                         }){
@@ -41,16 +41,16 @@ struct PopularSeriesView: View {
                 }
             }
             .onAppear(){
-                fetchPopularSeries(){apiRes in
-                    mostPopularSeries = apiRes
+                fetchPlayingNowMovies(){apiRes in
+                    playingNowMovies = apiRes
                 }
             }
         }
     }
 }
 
-struct PopularSeriesView_Previews: PreviewProvider {
+struct AiringMoviesView_Previews: PreviewProvider {
     static var previews: some View {
-        PopularSeriesView()
+        AiringMoviesView()
     }
 }

@@ -11,13 +11,29 @@ struct PopularMoviesView: View {
     var body: some View {
         ScrollView(.vertical){
             VStack{
-                Text("Most Popular Movies")
                 if mostPopularMovies != nil{
                     ForEach(mostPopularMovies.results){movie in
-                        KFImage(URL(string: imagesURL + movie.backdrop_path))
-                            .resizable()
-                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3, alignment: .center)
-                        Text("\(movie.title)")
+                        Button(action: {
+                            print("\(movie.title)")
+                        }){
+                            ZStack{
+                                KFImage(URL(string: imagesURL + movie.backdrop_path))
+                                    .resizable()
+                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3, alignment: .center)
+                                VStack{
+                                    Spacer()
+                                    Text("\(movie.title)")
+                                        .font(.title2)
+                                        .padding(.bottom, 6)
+                                        .background(
+                                            Color.gray
+                                                .opacity(0.5)
+                                                .frame(width: UIScreen.main.bounds.width)
+                                        )
+                                }
+                            }
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }else{
                     LoadingView()
