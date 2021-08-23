@@ -6,7 +6,7 @@ import Kingfisher
 
 struct PopularMoviesView: View {
     
-    @State private var mostPopularMovies: APIResults!
+    @State private var mostPopularMovies: MovieResults!
     
     var body: some View {
         ScrollView(.vertical){

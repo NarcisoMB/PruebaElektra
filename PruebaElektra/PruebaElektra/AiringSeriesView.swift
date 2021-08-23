@@ -7,23 +7,23 @@ import Kingfisher
 
 struct AiringSeriesView: View {
     
-    @State private var playingNowSeries: APIResults!
+    @State private var playingNowSeries: SerieResults!
     
     var body: some View {
         ScrollView(.vertical){
             VStack{
                 if playingNowSeries != nil{
-                    ForEach(playingNowSeries.results){movie in
+                    ForEach(playingNowSeries.results){serie in
                         Button(action: {
-                            print("\(movie.title)")
+                            print("\(serie.name)")
                         }){
                             ZStack{
-                                KFImage(URL(string: imagesURL + movie.backdrop_path))
+                                KFImage(URL(string: imagesURL + serie.backdrop_path))
                                     .resizable()
                                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3, alignment: .center)
                                 VStack{
                                     Spacer()
-                                    Text("\(movie.title)")
+                                    Text("\(serie.name)")
                                         .font(.title)
                                         .padding(.bottom, 6)
                                         .background(
@@ -42,6 +42,7 @@ struct AiringSeriesView: View {
             }
             .onAppear(){
                 fetchPlayingNowSeries(){apiRes in
+                    print(apiRes)
                     playingNowSeries = apiRes
                 }
             }

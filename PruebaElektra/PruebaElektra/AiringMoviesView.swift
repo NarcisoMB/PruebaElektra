@@ -6,12 +6,11 @@ import Kingfisher
 
 struct AiringMoviesView: View {
     
-    @State private var playingNowMovies: APIResults!
+    @State private var playingNowMovies: MovieResults!
     
     var body: some View {
         ScrollView(.vertical){
             VStack{
-                Text("Playing Now Movies")
                 if playingNowMovies != nil{
                     ForEach(playingNowMovies.results){movie in
                         Button(action: {
@@ -40,10 +39,10 @@ struct AiringMoviesView: View {
                     LoadingView()
                 }
             }
-            .onAppear(){
-                fetchPlayingNowMovies(){apiRes in
-                    playingNowMovies = apiRes
-                }
+        }
+        .onAppear(){
+            fetchPlayingNowMovies(){apiRes in
+                playingNowMovies = apiRes
             }
         }
     }

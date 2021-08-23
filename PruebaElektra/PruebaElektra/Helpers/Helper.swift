@@ -6,7 +6,7 @@ import Foundation
 import SwiftUI
 
 class SwiftUIViewCModel: ObservableObject {
-    @Published var state : SwiftUIViewCModelState = .airingMoviesView
+    @Published var state : SwiftUIViewCModelState = .moviesViews
     
     static let shared = SwiftUIViewCModel()
     
@@ -14,8 +14,6 @@ class SwiftUIViewCModel: ObservableObject {
 }
 
 enum SwiftUIViewCModelState {
-    case airingMoviesView
-    case airingSeriesView
-    case popularMoviesView
-    case popularSeriesView
+    case moviesViews
+    case seriesViews
 }

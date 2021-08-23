@@ -7,6 +7,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var selected = 0
+    @GestureState private var dragOffset: CGFloat = -100
     @ObservedObject var model = SwiftUIViewCModel.shared
     
     var body: some View {
@@ -15,22 +16,48 @@ struct ContentView: View {
                 Text("Most Popular").tag(0)
                 Text("Playing Now").tag(1)
             }).pickerStyle(SegmentedPickerStyle())
-            if model.state == .airingMoviesView && selected == 1{
+            if model.state == .moviesViews && selected == 1 {
                 AiringMoviesView()
-            }else if model.state == .airingSeriesView && selected == 1 {
-                AiringSeriesView()
-            }else if model.state == .popularMoviesView && selected == 0 {
+            }else if model.state == .seriesViews && selected == 1 {
+                AiringSeriesView() /*Pedo*/
+            }else if model.state == .moviesViews && selected == 0 {
                 PopularMoviesView()
-            }else if  model.state == .popularSeriesView && selected == 0 {
-                PopularSeriesView()
+            }else if  model.state == .seriesViews && selected == 0 {
+                PopularSeriesView() /*Pedo*/
             }
             HStack{
                 HStack {
-                    TabBarIcon(width: screenSize.width*0.5, height: screenSize.height/48, systemIconName: "film", tabName: "Movies")
-                    TabBarIcon(width: screenSize.width*0.5, height: screenSize.height/48, systemIconName: "tv", tabName: "Series")
+                    Button(action: {
+                        model.state = .moviesViews
+                    }){
+                        TabBarIcon(width: screenSize.width*0.5, height: screenSize.height/48, systemIconName: "film", tabName: "Movies")
+                    }
+                    Button(action: {
+                        model.state = .seriesViews
+                    }){
+                        TabBarIcon(width: screenSize.width*0.5, height: screenSize.height/48, systemIconName: "tv", tabName: "Series")
+                    }
                 }
             }
         }
+        .overlay(
+            Image(systemName: "arrow.left").offset(x: dragOffset / 2),
+            alignment: .leading
+        )
+        .gesture(
+            DragGesture()
+                .updating($dragOffset) { (value, gestureState, transaction) in
+                    let delta = value.location.x - value.startLocation.x
+                    if delta > 10 { // << some appropriate horizontal threshold here
+                        gestureState = delta
+                    }
+                }
+                .onEnded {
+                    if $0.translation.width > 100 {
+                        // Go to the previous slide
+                    }
+                }
+        )
     }
 }
 
