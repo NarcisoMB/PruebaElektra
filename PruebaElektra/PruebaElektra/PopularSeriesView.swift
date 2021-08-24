@@ -25,7 +25,7 @@ struct PopularSeriesView: View {
                                 ZStack{
                                     KFImage(URL(string: imagesURL + serie.poster_path))
                                         .resizable()
-                                        .frame(width: screenSize.width*0.4, height: screenSize.height*0.25, alignment: .center)
+                                        .frame(width: screenSize.width*0.4, height: screenSize.height*0.27, alignment: .center)
                                 }
                             }
                             .cornerRadius(25)
@@ -43,7 +43,7 @@ struct PopularSeriesView: View {
                                 ZStack{
                                     KFImage(URL(string: imagesURL + serie.poster_path))
                                         .resizable()
-                                        .frame(width: screenSize.width*0.4, height: screenSize.height*0.25, alignment: .center)
+                                        .frame(width: screenSize.width*0.4, height: screenSize.height*0.27, alignment: .center)
 //                                    VStack{
 //                                        Spacer()
 //                                        Text("\(serie.name)")

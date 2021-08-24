@@ -4,7 +4,7 @@
 
 import Foundation
 struct Seasons: Identifiable, Codable {
-    var air_date: String
+    var air_date: String?
     var episode_count: Int
     var id: Int
     var name: String

@@ -44,7 +44,7 @@ func fetchSerieById(completion: @escaping (SerieDetail) -> Void){
     
     URLSession.shared.dataTask(with: request) { data, response, error in
         if let data = data {
-//            print(String(data: data, encoding: .utf8))
+            print(String(data: data, encoding: .utf8))
             if let response = try? JSONDecoder().decode(SerieDetail.self, from: data) {
                 DispatchQueue.main.async {
                     completion(response)

@@ -10,14 +10,13 @@ struct SerieDetail: Identifiable, Codable {
     var first_air_date: String
     var genres: [Genre]
     var homepage: String
-//    var genre_ids: [Int]
     var id: Int
     var in_production: Bool
     var languages: [String]
     var last_air_date: String
-    var last_episode_to_air: EpisodeAir
+    var last_episode_to_air: EpisodeAir?
     var name: String
-    var next_episode_to_air: EpisodeAir
+    var next_episode_to_air: EpisodeAir?
     var networks: [Network]
     var number_of_episodes: Int
     var number_of_seasons: Int
