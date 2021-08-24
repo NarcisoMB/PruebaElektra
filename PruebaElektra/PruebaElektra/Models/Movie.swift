@@ -18,5 +18,4 @@ struct Movie: Identifiable, Codable {
     var video: Bool
     var vote_average: Float
     var vote_count: Int
-    
 }

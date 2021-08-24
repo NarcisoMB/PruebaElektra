@@ -5,7 +5,8 @@
 import Foundation
 import SwiftUI
 
-let API_KEY = "2dd070830ec9b7cbdfc3675b4eb8939b"
+let userDefaults = UserDefaults.standard
 let screenSize = UIScreen.main.bounds.size
 let apiURL = "https://api.themoviedb.org/3"
+let API_KEY = "2dd070830ec9b7cbdfc3675b4eb8939b"
 let imagesURL = "https://image.tmdb.org/t/p/original"

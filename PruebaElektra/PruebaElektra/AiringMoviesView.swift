@@ -7,6 +7,7 @@ import Kingfisher
 
 struct AiringMoviesView: View {
     
+    @Binding var detailView: Bool
     @State private var playingNowMovies: MovieResults!
     
     var body: some View {
@@ -15,12 +16,14 @@ struct AiringMoviesView: View {
                 if playingNowMovies != nil{
                     ForEach(playingNowMovies.results){movie in
                         Button(action: {
-                            print("\(movie.title)")
+                            detailView.toggle()
+                            userDefaults.set(movie.id, forKey: "id")
+                            userDefaults.set("movie", forKey: "object")
                         }){
                             ZStack{
                                 KFImage(URL(string: imagesURL + movie.backdrop_path))
                                     .resizable()
-                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*0.3, alignment: .center)
+                                    .frame(width: screenSize.width, height: screenSize.height*0.3, alignment: .center)
                                 VStack{
                                     Spacer()
                                     Text("\(movie.title)")
@@ -29,16 +32,17 @@ struct AiringMoviesView: View {
                                         .background(
                                             Color.gray
                                                 .opacity(0.5)
-                                                .frame(width: UIScreen.main.bounds.width)
+                                                .frame(width: screenSize.width)
                                         )
                                 }
                             }
                         }
+                        .cornerRadius(25)
                         .buttonStyle(PlainButtonStyle())
                     }
                 }else{
                     Spacer()
-                        .frame(height: UIScreen.main.bounds.height*0.35)
+                        .frame(height: screenSize.height*0.35)
                     LoadingView()
                 }
             }
@@ -51,8 +55,8 @@ struct AiringMoviesView: View {
     }
 }
 
-struct AiringMoviesView_Previews: PreviewProvider {
-    static var previews: some View {
-        AiringMoviesView()
-    }
-}
+//struct AiringMoviesView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AiringMoviesView()
+//    }
+//}
