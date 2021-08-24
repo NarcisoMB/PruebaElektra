@@ -12,6 +12,7 @@ struct DetailView: View {
     @State var releaseYear: String!
     @State private var serieD: SerieDetail!
     @State private var movieD: MovieDetail!
+    @State private var serieCrew: SerieCrew!
     @State private var videosD: VideoResults!
     
     var body: some View {
@@ -68,29 +69,50 @@ struct DetailView: View {
                                 Text("Genres")
                                     .bold()
                                     .padding(.top, screenSize.height*0.01)
-                                HStack{
-                                    ForEach(serieD.genres){genre in
-                                        Text("\(genre.name)")
+                                ScrollView(.horizontal){
+                                    HStack{
+                                        ForEach(serieD.genres){genre in
+                                            Text("\(genre.name)")
+                                        }
                                     }
                                 }
                             }
                             .padding(.horizontal, screenSize.height*0.01)
-//                            if videosD != nil{
-//                                Text("Videos")
-//                                    .bold()
-//                                    .padding([.horizontal, .top], screenSize.height*0.01)
-//                                ScrollView(.horizontal){
-//                                    HStack{
-//                                        ForEach(videosD.results){video in
-//                                            if video.site == "YouTube" {
-//                                                VideoPlayer(player: AVPlayer(url:  URL(string: "\(youtubelink)\(video.key)")!))
-//                                                    .frame(width: screenSize.width*0.975, height: screenSize.height*0.3)
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                                .frame(width: screenSize.width*0.975)
-//                            }
+                            Group{
+                                Text("Creators")
+                                    .bold()
+                                    .padding(.top, screenSize.height*0.01)
+                                ScrollView(.horizontal){
+                                    HStack{
+                                        ForEach(serieD.created_by){creator in
+                                            Text("\(creator.name)")
+                                        }
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, screenSize.height*0.01)
+                            if serieCrew != nil{
+                                Group{
+                                    Text("Actors")
+                                        .bold()
+                                        .padding(.top, screenSize.height*0.01)
+                                    ScrollView(.horizontal){
+                                        HStack{
+                                            ForEach(serieCrew.cast){actors in
+                                                VStack{
+                                                    KFImage(URL(string: imagesURL + actors.profile_path))
+                                                        .resizable()
+                                                        .cornerRadius(50)
+                                                        .frame(width: screenSize.width*0.24, height: screenSize.height*0.1)
+                                                    Text("\(actors.name)")
+                                                }
+                                            }
+                                        }
+                                        .frame(height: screenSize.height*0.12)
+                                    }
+                                }
+                                .padding([.leading, .bottom], screenSize.height*0.02)
+                            }
                         }
                         .padding(.top, screenSize.height*0.12)
                     }
@@ -204,7 +226,11 @@ struct DetailView: View {
                 fetchSerieById(){serie in
                     serieD = serie
                     releaseYear = String(self.serieD.first_air_date.split(separator: "-")[0])
-                    print(serieD!)
+//                    print(serieD!)
+                }
+                fetchSeriesCrew(){crew in
+                    serieCrew = crew
+//                    print(serieCrew)
                 }
             }
         }
