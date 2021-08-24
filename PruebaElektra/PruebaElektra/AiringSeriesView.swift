@@ -17,7 +17,6 @@ struct AiringSeriesView: View {
                     VStack{
                         ForEach(playingNowSeries.results.split().left){serie in
                             Button(action: {
-                                print("\(serie.name)")
                                 detailView.toggle()
                                 userDefaults.set(serie.id, forKey: "id")
                                 userDefaults.set("serie", forKey: "object")
@@ -36,8 +35,9 @@ struct AiringSeriesView: View {
                     VStack{
                         ForEach(playingNowSeries.results.split().right){serie in
                             Button(action: {
-                                print("\(serie.name)")
                                 detailView.toggle()
+                                userDefaults.set(serie.id, forKey: "id")
+                                userDefaults.set("serie", forKey: "object")
                             }){
                                 ZStack{
                                     KFImage(URL(string: imagesURL + serie.poster_path))

@@ -17,7 +17,7 @@ struct MovieDetail: Identifiable, Codable {
     var overview: String
     var popularity: Double
     var poster_path: String
-    var production_companies: [ProductionCompanies]
+    var production_companies: [ProductionCompany]
     var production_countries: [ProductionCountry]
     var release_date: String
     var revenue: Int

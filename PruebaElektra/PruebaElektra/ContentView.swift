@@ -47,24 +47,24 @@ struct ContentView: View {
                 }
             }
         }
-        .overlay(
-            Image(systemName: "arrow.left").offset(x: dragOffset / 2),
-            alignment: .leading
-        )
-        .gesture(
-            DragGesture()
-                .updating($dragOffset) { (value, gestureState, transaction) in
-                    let delta = value.location.x - value.startLocation.x
-                    if delta > 10 { // << some appropriate horizontal threshold here
-                        gestureState = delta
-                    }
-                }
-                .onEnded {
-                    if $0.translation.width > 100 {
-                        // Go to the previous slide
-                    }
-                }
-        )
+//        .overlay(
+//            Image(systemName: "arrow.left").offset(x: dragOffset / 2),
+//            alignment: .leading
+//        )
+//        .gesture(
+//            DragGesture()
+//                .updating($dragOffset) { (value, gestureState, transaction) in
+//                    let delta = value.location.x - value.startLocation.x
+//                    if delta > 10 { // << some appropriate horizontal threshold here
+//                        gestureState = delta
+//                    }
+//                }
+//                .onEnded {
+//                    if $0.translation.width > 100 {
+//                        // Go to the previous slide
+//                    }
+//                }
+//        )
     }
 }
 

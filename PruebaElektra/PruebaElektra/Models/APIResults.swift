@@ -18,3 +18,10 @@ struct SerieResults: Codable {
     var total_results: Int
     
 }
+
+struct VideoResults: Codable {
+    var id: Int
+    var results: [Video]
+    
+}
+
