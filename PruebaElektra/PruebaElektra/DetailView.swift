@@ -106,9 +106,9 @@ struct DetailView: View {
                                                         .frame(width: screenSize.width*0.24, height: screenSize.height*0.1)
                                                     Text("\(actors.name)")
                                                 }
+                                                .frame(height: screenSize.height*0.16)
                                             }
                                         }
-                                        .frame(height: screenSize.height*0.12)
                                     }
                                 }
                                 .padding([.leading, .bottom], screenSize.height*0.02)
