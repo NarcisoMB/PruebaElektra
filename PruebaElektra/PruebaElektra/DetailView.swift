@@ -2,18 +2,22 @@
 //  PruebaElektra
 //  Created by Narciso Meza on 23/08/21.
 
-import AVKit
+import WebKit
 import SwiftUI
 import Kingfisher
 
+
 struct DetailView: View {
     
-    @State var movieLink: String!
+    @State var trailerChoioce = ""
     @State var releaseYear: String!
     @State private var serieD: SerieDetail!
     @State private var movieD: MovieDetail!
     @State private var serieCrew: SerieCrew!
     @State private var videosD: VideoResults!
+    
+    @StateObject var model = WebViewModel()
+
     
     var body: some View {
         ScrollView(.vertical){
@@ -32,7 +36,7 @@ struct DetailView: View {
                             }
                             Rectangle()
                                 .fill(Color.black)
-                                .frame(width: screenSize.width*0.9)
+                                .frame(width: screenSize.width)
                         }
                         VStack(alignment: .leading){
                             HStack{
@@ -121,10 +125,8 @@ struct DetailView: View {
                         VStack{
                             KFImage(URL(string: imagesURL + movieD.backdrop_path))
                                 .resizable()
-                                .frame(width: screenSize.width*0.9, height: screenSize.height*0.3)
-                            Rectangle()
-                                .fill(Color.black)
-                                .frame(width: screenSize.width*0.9)
+                                .frame(width: screenSize.width, height: screenSize.height*0.3)
+                            Spacer()
                         }
                         VStack(alignment: .leading){
                             HStack{
@@ -190,17 +192,29 @@ struct DetailView: View {
                                 Text("Videos")
                                     .bold()
                                     .padding([.horizontal, .top], screenSize.height*0.01)
-                                ScrollView(.horizontal){
-                                    HStack{
-                                        ForEach(videosD.results){video in
-                                            if video.site == "YouTube" {
-                                                VideoPlayer(player: AVPlayer(url:  URL(string: "\(youtubelink)\(video.key)")!))
-                                                    .frame(width: screenSize.width*0.975, height: screenSize.height*0.3)
-                                            }
+                                VStack(alignment: .center){
+                                    Picker(selection: $trailerChoioce, label: Text("Seleccione un video")){
+                                        ForEach(videosD.results, id: \.key){
+                                            Text($0.name).tag($0.key)
                                         }
                                     }
+                                    .onTapGesture{
+                                        model.url = URL(string: "\(youtubelink)\(trailerChoioce)")!
+                                        model.loadUrl()
+                                    }
+                                    .frame(width: screenSize.width)
+                                    if trailerChoioce != "" {
+                                        Button(action: {
+                                            print(videosD.results)
+                                            print(youtubelink + trailerChoioce)
+                                        }){
+                                            Text("print")
+                                        }
+                                        WebView(webView: model.webView)
+                                            .frame(height: screenSize.height*0.3)
+                                            .padding(.bottom, screenSize.height*0.01)
+                                    }
                                 }
-                                .frame(width: screenSize.width*0.975)
                             }
                         }
                         .padding(.top, screenSize.height*0.12)
@@ -220,7 +234,7 @@ struct DetailView: View {
                 }
                 fetchMovieVideo(){videos in
                     videosD = videos
-//                    print("\(youtubelink)\(videos.results[0].key)")
+//                    print("\(videos)")
                 }
             }else if userDefaults.string(forKey: "object") == "serie" {
                 fetchSerieById(){serie in
@@ -234,5 +248,31 @@ struct DetailView: View {
                 }
             }
         }
+    }
+}
+
+struct WebView: UIViewRepresentable {
+    typealias UIViewType = WKWebView
+
+    let webView: WKWebView
+    
+    func makeUIView(context: Context) -> WKWebView {
+        return webView
+    }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) { }
+}
+
+class WebViewModel: ObservableObject {
+    let webView: WKWebView
+    var url: URL
+    
+    init() {
+        webView = WKWebView(frame: .zero)
+        url = URL(string: "youtube.com")!
+    }
+    
+    func loadUrl() {
+        webView.load(URLRequest(url: url))
     }
 }
