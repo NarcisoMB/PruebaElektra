@@ -54,9 +54,3 @@ struct PopularMoviesView: View {
         }
     }
 }
-
-//struct PopularMoviesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PopularMoviesView()
-//    }
-//}

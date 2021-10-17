@@ -54,9 +54,3 @@ struct AiringMoviesView: View {
         }
     }
 }
-
-//struct AiringMoviesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AiringMoviesView()
-//    }
-//}

@@ -9,7 +9,7 @@ import Kingfisher
 
 struct DetailView: View {
     
-    @State var trailerChoioce = ""
+    @State var trailerChoice = ""
     @State var releaseYear: String!
     @State private var serieD: SerieDetail!
     @State private var movieD: MovieDetail!
@@ -23,6 +23,9 @@ struct DetailView: View {
         ScrollView(.vertical){
             VStack{
                 if userDefaults.string(forKey: "object") == "serie" && serieD != nil {
+/*
+                    Vista de Serie
+ */
                     ZStack{
                         VStack{
                             if serieD.backdrop_path != nil{
@@ -121,6 +124,9 @@ struct DetailView: View {
                         .padding(.top, screenSize.height*0.12)
                     }
                 }else if userDefaults.string(forKey: "object") == "movie" && movieD != nil{
+/*
+                    Vista de Peliculas
+*/
                     ZStack{
                         VStack{
                             KFImage(URL(string: imagesURL + movieD.backdrop_path))
@@ -193,23 +199,17 @@ struct DetailView: View {
                                     .bold()
                                     .padding([.horizontal, .top], screenSize.height*0.01)
                                 VStack(alignment: .center){
-                                    Picker(selection: $trailerChoioce, label: Text("Seleccione un video")){
+                                    Picker(selection: $trailerChoice, label: Text("Seleccione un video")){
                                         ForEach(videosD.results, id: \.key){
                                             Text($0.name).tag($0.key)
                                         }
                                     }
-                                    .onTapGesture{
-                                        model.url = URL(string: "\(youtubelink)\(trailerChoioce)")!
+                                    .onChange(of: trailerChoice){ choice in
+                                        model.url = URL(string: "\(youtubelink)\(choice)")!
                                         model.loadUrl()
                                     }
                                     .frame(width: screenSize.width)
-                                    if trailerChoioce != "" {
-                                        Button(action: {
-                                            print(videosD.results)
-                                            print(youtubelink + trailerChoioce)
-                                        }){
-                                            Text("print")
-                                        }
+                                    if trailerChoice != "" {
                                         WebView(webView: model.webView)
                                             .frame(height: screenSize.height*0.3)
                                             .padding(.bottom, screenSize.height*0.01)
@@ -227,6 +227,9 @@ struct DetailView: View {
             }
         }
         .onAppear(){
+/*
+            Codigo que recibe informacion de API
+*/
             if userDefaults.string(forKey: "object") == "movie" {
                 fetchMoviesById(){movie in
                     movieD = movie
@@ -234,45 +237,17 @@ struct DetailView: View {
                 }
                 fetchMovieVideo(){videos in
                     videosD = videos
-//                    print("\(videos)")
                 }
             }else if userDefaults.string(forKey: "object") == "serie" {
                 fetchSerieById(){serie in
                     serieD = serie
                     releaseYear = String(self.serieD.first_air_date.split(separator: "-")[0])
-//                    print(serieD!)
                 }
                 fetchSeriesCrew(){crew in
                     serieCrew = crew
-//                    print(serieCrew)
                 }
             }
         }
     }
 }
 
-struct WebView: UIViewRepresentable {
-    typealias UIViewType = WKWebView
-
-    let webView: WKWebView
-    
-    func makeUIView(context: Context) -> WKWebView {
-        return webView
-    }
-    
-    func updateUIView(_ uiView: WKWebView, context: Context) { }
-}
-
-class WebViewModel: ObservableObject {
-    let webView: WKWebView
-    var url: URL
-    
-    init() {
-        webView = WKWebView(frame: .zero)
-        url = URL(string: "youtube.com")!
-    }
-    
-    func loadUrl() {
-        webView.load(URLRequest(url: url))
-    }
-}

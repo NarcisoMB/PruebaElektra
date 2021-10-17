@@ -43,18 +43,6 @@ struct AiringSeriesView: View {
                                     KFImage(URL(string: imagesURL + serie.poster_path))
                                         .resizable()
                                         .frame(width: screenSize.width*0.4, height: screenSize.height*0.27, alignment: .center)
-//                                    VStack{
-//                                        Spacer()
-//                                        Text("\(serie.name)")
-//                                            .font(.title2)
-//                                            .padding(.bottom, 6)
-//                                            .background(
-//                                                Color.gray
-//                                                    .opacity(0.5)
-//                                                    .frame(width: screenSize.width*0.4)
-//                                            )
-//                                            .frame(width: screenSize.width*0.4)
-//                                    }
                                 }
                             }
                             .cornerRadius(25)
@@ -76,9 +64,3 @@ struct AiringSeriesView: View {
         }
     }
 }
-//
-//struct AiringSeriesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AiringSeriesView()
-//    }
-//}

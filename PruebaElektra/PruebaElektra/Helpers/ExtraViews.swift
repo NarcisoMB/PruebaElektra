@@ -4,6 +4,10 @@
 import SwiftUI
 import Kingfisher
 
+
+/*
+            Vista que muestra icono de Carga
+*/
 struct LoadingView: View {
     
     @State private var isLoading = false
@@ -21,6 +25,9 @@ struct LoadingView: View {
     }
 }
 
+/*
+            Vista inferior que segmenta Peliculas y Series
+*/
 struct TabBarIcon: View {
      
      let width, height: CGFloat

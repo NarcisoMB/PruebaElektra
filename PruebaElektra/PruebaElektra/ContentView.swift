@@ -20,6 +20,7 @@ struct ContentView: View {
                     Text("Most Popular").tag(0)
                     Text("Playing Now").tag(1)
                 }).pickerStyle(SegmentedPickerStyle())
+                
                 if model.state == .moviesViews && selected == 1 {
                     AiringMoviesView(detailView: $detailView)
                 }else if model.state == .seriesViews && selected == 1 {
@@ -47,24 +48,6 @@ struct ContentView: View {
                 }
             }
         }
-//        .overlay(
-//            Image(systemName: "arrow.left").offset(x: dragOffset / 2),
-//            alignment: .leading
-//        )
-//        .gesture(
-//            DragGesture()
-//                .updating($dragOffset) { (value, gestureState, transaction) in
-//                    let delta = value.location.x - value.startLocation.x
-//                    if delta > 10 { // << some appropriate horizontal threshold here
-//                        gestureState = delta
-//                    }
-//                }
-//                .onEnded {
-//                    if $0.translation.width > 100 {
-//                        // Go to the previous slide
-//                    }
-//                }
-//        )
     }
 }
 

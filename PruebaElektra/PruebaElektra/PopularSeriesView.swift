@@ -17,7 +17,6 @@ struct PopularSeriesView: View {
                     VStack{
                         ForEach(mostPopularSeries.results.split().left){serie in
                             Button(action: {
-//                                print("\(serie.name)")
                                 detailView.toggle()
                                 userDefaults.set(serie.id, forKey: "id")
                                 userDefaults.set("serie", forKey: "object")
@@ -65,9 +64,3 @@ struct PopularSeriesView: View {
         }
     }
 }
-
-//struct PopularSeriesView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PopularSeriesView()
-//    }
-//}
